@@ -20,8 +20,8 @@ public class UserContoller {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public ResponseEntity<UserDto> getUser(@RequestParam Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
         UserDto userDto = this.userService.getUserById(id);
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
@@ -32,18 +32,19 @@ public class UserContoller {
         return new ResponseEntity<>(createdUserDto, HttpStatus.CREATED);
     }
 
-    @PutMapping("/")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @RequestParam Long id) {
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable Long id) {
         UserDto updatedUserDto = this.userService.updateUser(userDto, id);
         return new ResponseEntity<>(updatedUserDto, HttpStatus.OK);
     }
 
-    @DeleteMapping("/")
-    public ResponseEntity<Void> deleteUser(@RequestParam Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         this.userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/")
     public ResponseEntity<List<UserDto>> getAllUsers() {
         List<UserDto> userDtos = this.userService.getAllUsers();
         return new ResponseEntity<>(userDtos, HttpStatus.OK);
