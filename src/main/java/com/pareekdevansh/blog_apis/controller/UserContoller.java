@@ -1,7 +1,8 @@
 package com.pareekdevansh.blog_apis.controller;
 
-import com.pareekdevansh.blog_apis.service.UserService;
+import com.pareekdevansh.blog_apis.model.common.ApiResponse;
 import com.pareekdevansh.blog_apis.model.dto.UserDto;
+import com.pareekdevansh.blog_apis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,9 +40,9 @@ public class UserContoller {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long id) {
         this.userService.deleteUser(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse("User deleted successfully", true ), HttpStatus.OK);
     }
 
     @GetMapping("/")
