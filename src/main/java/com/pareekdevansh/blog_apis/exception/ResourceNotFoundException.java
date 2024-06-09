@@ -10,7 +10,7 @@ public class ResourceNotFoundException extends RuntimeException {
     private String propertyName;
     private Long propertyValue;
     public ResourceNotFoundException(String _resourceName , String _propertyName , Long _propertyValue ) {
-        super("Not found " + _resourceName + " with " + _propertyName + " : " + _propertyValue);
+        super("No " + _resourceName + " found with " + _propertyName + " : " + _propertyValue);
         resourceName = _resourceName;
         propertyName = _propertyName;
         propertyValue = _propertyValue;
