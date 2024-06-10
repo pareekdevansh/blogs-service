@@ -1,15 +1,14 @@
 package com.pareekdevansh.blog_apis.model.common;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class ApiResponse {
     private String message;
     private boolean success;
+
+    public ApiResponse(String message, boolean b) {
+        this.message = message;
+        this.success = b;
+    }
 }

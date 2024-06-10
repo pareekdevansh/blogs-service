@@ -3,6 +3,7 @@ package com.pareekdevansh.blog_apis.controller;
 import com.pareekdevansh.blog_apis.model.common.ApiResponse;
 import com.pareekdevansh.blog_apis.model.dto.UserDto;
 import com.pareekdevansh.blog_apis.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +29,13 @@ public class UserContoller {
     }
 
     @PostMapping("/")
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
         UserDto createdUserDto = this.userService.createUser(userDto);
         return new ResponseEntity<>(createdUserDto, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable Long id) {
+    public ResponseEntity<UserDto> updateUser(@Valid@RequestBody UserDto userDto, @PathVariable Long id) {
         UserDto updatedUserDto = this.userService.updateUser(userDto, id);
         return new ResponseEntity<>(updatedUserDto, HttpStatus.OK);
     }
@@ -42,7 +43,8 @@ public class UserContoller {
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long id) {
         this.userService.deleteUser(id);
-        return new ResponseEntity<>(new ApiResponse("User deleted successfully", true ), HttpStatus.OK);
+        ApiResponse deleteResponse = new ApiResponse("User deleted successfully", true);
+        return new ResponseEntity<>(deleteResponse, HttpStatus.OK);
     }
 
     @GetMapping("/")
