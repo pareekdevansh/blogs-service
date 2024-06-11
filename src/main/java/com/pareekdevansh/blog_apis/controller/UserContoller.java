@@ -24,20 +24,20 @@ public class UserContoller {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
-        UserDto userDto = this.userService.getUserById(id);
-        return new ResponseEntity<>(userDto, HttpStatus.OK);
+        UserDto user = this.userService.getUserById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping("/")
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
-        UserDto createdUserDto = this.userService.createUser(userDto);
-        return new ResponseEntity<>(createdUserDto, HttpStatus.CREATED);
+        UserDto createdUser = this.userService.createUser(userDto);
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateUser(@Valid@RequestBody UserDto userDto, @PathVariable Long id) {
-        UserDto updatedUserDto = this.userService.updateUser(userDto, id);
-        return new ResponseEntity<>(updatedUserDto, HttpStatus.OK);
+    public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable Long id) {
+        UserDto updatedUser = this.userService.updateUser(userDto, id);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -49,8 +49,8 @@ public class UserContoller {
 
     @GetMapping("/")
     public ResponseEntity<List<UserDto>> getAllUsers() {
-        List<UserDto> userDtos = this.userService.getAllUsers();
-        return new ResponseEntity<>(userDtos, HttpStatus.OK);
+        List<UserDto> users = this.userService.getAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
 }
